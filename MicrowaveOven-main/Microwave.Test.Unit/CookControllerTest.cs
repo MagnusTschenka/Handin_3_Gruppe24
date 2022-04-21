@@ -15,6 +15,7 @@ namespace Microwave.Test.Unit
         private ITimer timer;
         private IDisplay display;
         private IPowerTube powerTube;
+        private IBuzzer buzzer;
 
         [SetUp]
         public void Setup()
@@ -23,8 +24,8 @@ namespace Microwave.Test.Unit
             timer = Substitute.For<ITimer>();
             display = Substitute.For<IDisplay>();
             powerTube = Substitute.For<IPowerTube>();
-
-            uut = new CookController(timer, display, powerTube, ui);
+            buzzer = Substitute.For<IBuzzer>();
+            uut = new CookController(timer, display, powerTube, buzzer, ui);
         }
 
         [Test]
@@ -62,6 +63,17 @@ namespace Microwave.Test.Unit
             timer.Expired += Raise.EventWith(this, EventArgs.Empty);
 
             powerTube.Received().TurnOff();
+        }
+
+        //New Test - Testing Buzzer sound in TimerExpired
+        [Test]
+        public void Cooking_TimerExpired_StartBuzzerSound()
+        {
+            uut.StartCooking(50, 60);
+
+            timer.Expired += Raise.EventWith(this, EventArgs.Empty);
+
+            buzzer.Received().StartBuzzing();
         }
 
         [Test]
