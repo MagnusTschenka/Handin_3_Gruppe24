@@ -22,7 +22,7 @@ namespace Microwave.Test.Unit
             // We don't need an assert, as an exception would fail the test case
 
             //arrange
-            var expected = "BUZZ, BUZZ, BUZZ\n";
+            var expected = "BUZZ, BUZZ, BUZZ\r\n";
             var stringwriter = new StringWriter();
             Console.SetOut(stringwriter);
 
