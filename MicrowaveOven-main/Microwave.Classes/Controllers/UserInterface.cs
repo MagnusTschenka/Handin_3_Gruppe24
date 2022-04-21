@@ -21,6 +21,7 @@ namespace Microwave.Classes.Controllers
         private int time = 1;
 
         public UserInterface(
+            IButton AddTimeButton,
             IButton powerButton,
             IButton timeButton,
             IButton startCancelButton,
@@ -29,6 +30,8 @@ namespace Microwave.Classes.Controllers
             ILight light,
             ICookController cooker)
         {
+
+            AddTimeButton.Pressed += new EventHandler(OnAddTimePressed);
             powerButton.Pressed += new EventHandler(OnPowerPressed);
             timeButton.Pressed += new EventHandler(OnTimePressed);
             startCancelButton.Pressed += new EventHandler(OnStartCancelPressed);
@@ -61,6 +64,21 @@ namespace Microwave.Classes.Controllers
                     break;
             }
         }
+
+
+        public void OnAddTimePressed(object sender, EventArgs e)
+        {
+            switch (myState)
+            {
+                case States.COOKING:
+                    time += 5;
+                    myCooker.AddTime(5);
+                    myDisplay.ShowTime(time, 0);
+                    break;
+            }
+        }
+
+     
 
         public void OnTimePressed(object sender, EventArgs e)
         {
