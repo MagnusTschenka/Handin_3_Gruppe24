@@ -1,8 +1,9 @@
-﻿//using Microwave.Classes.Boundary;
-//using Microwave.Classes.Controllers;
-//using Microwave.Classes.Interfaces;
-//using NSubstitute;
-//using NUnit.Framework;
+using Microwave.Classes.Boundary;
+using Microwave.Classes.Controllers;
+using Microwave.Classes.Interfaces;
+using NSubstitute;
+using NUnit.Framework;
+
 
 //namespace Microwave.Test.Integration
 //{
@@ -108,6 +109,3 @@
 //        }
 
 //        #endregion
-
-//    }
-//}

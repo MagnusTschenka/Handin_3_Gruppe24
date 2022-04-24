@@ -1,10 +1,10 @@
-﻿//using System.Threading;
-//using Microwave.Classes.Boundary;
-//using Microwave.Classes.Controllers;
-//using Microwave.Classes.Interfaces;
-//using NSubstitute;
-//using NUnit.Framework;
-//using Timer = Microwave.Classes.Boundary.Timer;
+using System.Threading;
+using Microwave.Classes.Boundary;
+using Microwave.Classes.Controllers;
+using Microwave.Classes.Interfaces;
+using NSubstitute;
+using NUnit.Framework;
+using Timer = Microwave.Classes.Boundary.Timer;
 
 //namespace Microwave.Test.Integration
 //{
@@ -111,7 +111,3 @@
 //            output.Received(1).OutputLine(Arg.Is<string>(str => str.Contains("00:59")));
 //        }
 
-
-//        #endregion
-//    }
-//}

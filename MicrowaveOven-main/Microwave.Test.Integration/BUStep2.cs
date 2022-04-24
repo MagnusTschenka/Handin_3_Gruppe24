@@ -1,11 +1,11 @@
-﻿//using System;
-//using System.Threading;
-//using Microwave.Classes.Boundary;
-//using Microwave.Classes.Controllers;
-//using Microwave.Classes.Interfaces;
-//using NSubstitute;
-//using NUnit.Framework;
-//using Timer = Microwave.Classes.Boundary.Timer;
+using System.Threading;
+using Microwave.Classes.Boundary;
+using Microwave.Classes.Controllers;
+using Microwave.Classes.Interfaces;
+using NSubstitute;
+using NUnit.Framework;
+using Timer = Microwave.Classes.Boundary.Timer;
+
 
 //namespace Microwave.Test.Integration
 //{
@@ -122,85 +122,86 @@
 //            // Should start cooking 
 //            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("PowerTube works with 50")));
 
-//        }
+=======
+        }
 
-//        [Test]
-//        public void UserInterface_CookController_StartCooking_150W()
-//        {
-//            powerButton.Pressed += Raise.Event();
-//            powerButton.Pressed += Raise.Event();
-//            powerButton.Pressed += Raise.Event();
-//            timeButton.Pressed += Raise.Event();
-//            startCancelButton.Pressed += Raise.Event();
+        [Test]
+        public void UserInterface_CookController_StartCooking_150W()
+        {
+            powerButton.Pressed += Raise.Event();
+            powerButton.Pressed += Raise.Event();
+            powerButton.Pressed += Raise.Event();
+            timeButton.Pressed += Raise.Event();
+            startCancelButton.Pressed += Raise.Event();
 
-//            // Should start cooking 
-//            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("PowerTube works with 150")));
+            // Should start cooking 
+            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("PowerTube works with 150")));
 
-//        }
+        }
 
-//        [Test]
-//        public void UserInterface_CookController_StartCooking_700W()
-//        {
-//            for (int p = 50; p <= 700; p += 50)
-//            {
-//                powerButton.Pressed += Raise.Event();
-//            }
+        [Test]
+        public void UserInterface_CookController_StartCooking_700W()
+        {
+            for (int p = 50; p <= 700; p += 50)
+            {
+                powerButton.Pressed += Raise.Event();
+            }
 
-//            timeButton.Pressed += Raise.Event();
-//            startCancelButton.Pressed += Raise.Event();
+            timeButton.Pressed += Raise.Event();
+            startCancelButton.Pressed += Raise.Event();
 
-//            // Should start cooking 
-//            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("PowerTube works with 700")));
-//        }
+            // Should start cooking 
+            output.Received().OutputLine(Arg.Is<string>(str => str.Contains("PowerTube works with 700")));
+        }
 
-//        [Test]
-//        public void UserInterface_CookController_StartCooking_1min()
-//        {
-//            powerButton.Pressed += Raise.Event();
-//            timeButton.Pressed += Raise.Event();
-//            startCancelButton.Pressed += Raise.Event();
+        [Test]
+        public void UserInterface_CookController_StartCooking_1min()
+        {
+            powerButton.Pressed += Raise.Event();
+            timeButton.Pressed += Raise.Event();
+            startCancelButton.Pressed += Raise.Event();
 
-//            // Should start cooking 
-//            // Wait for first time tick
-//            Thread.Sleep(1050);
+            // Should start cooking 
+            // Wait for first time tick
+            Thread.Sleep(1050);
 
-//            // Now should have updated 
-//            output.Received(1).OutputLine(Arg.Is<string>(str => str.Contains("00:59")));
-//        }
+            // Now should have updated 
+            output.Received(1).OutputLine(Arg.Is<string>(str => str.Contains("00:59")));
+        }
 
-//        [Test]
-//        public void UserInterface_CookController_StartCooking_2min()
-//        {
-//            powerButton.Pressed += Raise.Event();
-//            timeButton.Pressed += Raise.Event();
-//            timeButton.Pressed += Raise.Event();
-//            startCancelButton.Pressed += Raise.Event();
+        [Test]
+        public void UserInterface_CookController_StartCooking_2min()
+        {
+            powerButton.Pressed += Raise.Event();
+            timeButton.Pressed += Raise.Event();
+            timeButton.Pressed += Raise.Event();
+            startCancelButton.Pressed += Raise.Event();
 
-//            // Should start cooking 
-//            // Wait for first time tick
-//            Thread.Sleep(1050);
+            // Should start cooking 
+            // Wait for first time tick
+            Thread.Sleep(1050);
 
-//            // Now should have updated 
-//            output.Received(1).OutputLine(Arg.Is<string>(str => str.Contains("01:59")));
-//        }
+            // Now should have updated 
+            output.Received(1).OutputLine(Arg.Is<string>(str => str.Contains("01:59")));
+        }
 
-//        [Test]
-//        public void UserInterface_CookController_CookingsIsDone()
-//        {
-//            // Checks the call back from CookController to UserInterface
-//            powerButton.Pressed += Raise.Event();
-//            timeButton.Pressed += Raise.Event();
-//            startCancelButton.Pressed += Raise.Event();
+        [Test]
+        public void UserInterface_CookController_CookingsIsDone()
+        {
+            // Checks the call back from CookController to UserInterface
+            powerButton.Pressed += Raise.Event();
+            timeButton.Pressed += Raise.Event();
+            startCancelButton.Pressed += Raise.Event();
 
-//            // Should start cooking 
-//            // Wait for expiration
-//            Thread.Sleep(60500);
+            // Should start cooking 
+            // Wait for expiration
+            Thread.Sleep(60500);
 
-//            // Now should have turned off light
-//            output.Received(1).OutputLine(Arg.Is<string>(str => str.Contains("Light is turned off")));
+            // Now should have turned off light
+            output.Received(1).OutputLine(Arg.Is<string>(str => str.Contains("Light is turned off")));
 
-//        }
+        }
 
-//        #endregion
-//    }
-//}
+        #endregion
+    }
+} */

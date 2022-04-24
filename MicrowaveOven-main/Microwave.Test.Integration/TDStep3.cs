@@ -1,4 +1,4 @@
-﻿//using System;
+//using System;
 //using System.Threading;
 //using Microwave.Classes.Boundary;
 //using Microwave.Classes.Controllers;
@@ -172,6 +172,8 @@
 //            startCancelButton.Press();
 
 //            faketimer.TimerTick += Raise.EventWith(this, EventArgs.Empty);
+=======
+
 
 //            output.Received(1).OutputLine(Arg.Is<string>(str => str.Contains("00:59")));
 //        }
@@ -247,6 +249,3 @@
 //        }
 
 //        #endregion
-
-//    }
-//}

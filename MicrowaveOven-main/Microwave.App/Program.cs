@@ -13,6 +13,8 @@ namespace Microwave.App
             Button timeButton = new Button();
         
 
+            Buzzer buzzer = new Buzzer();
+
             Door door = new Door();
 
             Output output = new Output();
@@ -26,7 +28,7 @@ namespace Microwave.App
             Microwave.Classes.Boundary.Timer timer = new Timer();
             AddTimeButton AddTimeButton = new AddTimeButton(timer);
 
-            CookController cooker = new CookController(timer, display, powerTube);
+            CookController cooker = new CookController(timer, display, powerTube, buzzer);
 
             UserInterface ui = new UserInterface(AddTimeButton,powerButton, timeButton, startCancelButton, door, display, light, cooker);
 
