@@ -9,8 +9,9 @@ namespace Microwave.Classes.Boundary
 {
     public class AddTimeButton : IButton
     {
-        AddTimeButton()
+       public AddTimeButton(ITimer timer)
         { itimer = timer; }
+
         public ITimer itimer;
         public event EventHandler Pressed;
 

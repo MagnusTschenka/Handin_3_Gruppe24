@@ -14,6 +14,7 @@ namespace Microwave.Test.Unit
         private IButton powerButton;
         private IButton timeButton;
         private IButton startCancelButton;
+        private IButton AddTimeButton;
 
         private IDoor door;
 
@@ -25,6 +26,7 @@ namespace Microwave.Test.Unit
         [SetUp]
         public void Setup()
         {
+            AddTimeButton = Substitute.For<IButton>();
             powerButton = Substitute.For<IButton>();
             timeButton = Substitute.For<IButton>();
             startCancelButton = Substitute.For<IButton>();
@@ -33,7 +35,7 @@ namespace Microwave.Test.Unit
             display = Substitute.For<IDisplay>();
             cooker = Substitute.For<ICookController>();
 
-            uut = new UserInterface(
+            uut = new UserInterface(AddTimeButton,
                 powerButton, timeButton, startCancelButton,
                 door,
                 display,
@@ -335,7 +337,45 @@ namespace Microwave.Test.Unit
             light.Received(1).TurnOff();
         }
 
+        [Test]
+        public void OnAddTimePressed()
+        {
+            powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetPower
+            timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetTime
+            startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in cooking
+
+            //Add time to remaining time
+            AddTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+
+            cooker.Received().AddTime(5);
+            
+
+        }
+
+        [Test]
+        public void OnAddTimePressed_display()
+        {
+            powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetPower
+            timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetTime
+            startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in cooking
+
+            //Add time to remaining time
+            AddTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+
+            display.Received().ShowTime(Arg.Is<int>(6), Arg.Is<int>(0));
+            
+
+
+        }
 
     }
+
+
 
 }

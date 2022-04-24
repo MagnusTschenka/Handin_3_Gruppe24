@@ -83,5 +83,11 @@ namespace Microwave.Test.Unit
             powerTube.Received().TurnOff();
         }
 
+        [Test]
+        public void AddTime()
+        {
+            uut.AddTime(5);
+            timer.Received().AddTime(5);
+        }
     }
 }
