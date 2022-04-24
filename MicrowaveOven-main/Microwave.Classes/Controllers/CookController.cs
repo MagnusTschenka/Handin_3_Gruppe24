@@ -39,6 +39,7 @@ namespace Microwave.Classes.Controllers
 
             timer.Expired += new EventHandler(OnTimerExpired);
             timer.TimerTick += new EventHandler(OnTimerTick);
+           
         }
 
         public void StartCooking(int power, int time)
@@ -75,5 +76,9 @@ namespace Microwave.Classes.Controllers
                 myDisplay.ShowTime(remaining / 60, remaining % 60);
             }
         }
+
+        public void AddTime(int time)
+        {
+            myTimer.AddTime(time);        }
     }
 }

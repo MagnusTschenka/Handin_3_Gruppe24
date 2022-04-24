@@ -9,6 +9,7 @@ namespace Microwave.Classes.Boundary
 
         public event EventHandler Expired;
         public event EventHandler TimerTick;
+     
 
         private System.Timers.Timer timer;
 
@@ -50,6 +51,16 @@ namespace Microwave.Classes.Boundary
             {
                 Expire();
             }
+        }
+
+        public void AddTime(int time)
+        {
+            // One tick has passed
+            // Do what I should
+            TimeRemaining += time;
+           
+
+         
         }
 
     }

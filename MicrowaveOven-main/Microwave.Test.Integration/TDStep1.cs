@@ -1,73 +1,74 @@
-﻿/*  */using Microwave.Classes.Boundary;
+using Microwave.Classes.Boundary;
 using Microwave.Classes.Controllers;
 using Microwave.Classes.Interfaces;
 using NSubstitute;
 using NSubstitute.Core.Arguments;
 using NUnit.Framework;
 
-namespace Microwave.Test.Integration
-{
-    [TestFixture]
-    public class TDStep1
-    {
-        private Door door;
-        private Button powerButton;
-        private Button timeButton;
-        private Button startCancelButton;
 
-        private UserInterface ui;
+//namespace Microwave.Test.Integration
+//{
+//    [TestFixture]
+//    public class TDStep1
+//    {
+//        private Door door;
+//        private Button powerButton;
+//        private Button timeButton;
+//        private Button startCancelButton;
 
-        private ILight light;
-        private IDisplay display;
-        private ICookController cooker;
+//        private UserInterface ui;
 
-        [SetUp]
-        public void Setup()
-        {
-            door = new Door();
-            powerButton = new Button();
-            timeButton = new Button();
-            startCancelButton = new Button();
+//        private ILight light;
+//        private IDisplay display;
+//        private ICookController cooker;
 
-            light = Substitute.For<ILight>();
-            display = Substitute.For<IDisplay>();
-            cooker = Substitute.For<ICookController>();
+//        [SetUp]
+//        public void Setup()
+//        {
+//            door = new Door();
+//            powerButton = new Button();
+//            timeButton = new Button();
+//            startCancelButton = new Button();
 
-            ui = new UserInterface(powerButton, timeButton, startCancelButton, door, display, light, cooker);
-        }
+//            light = Substitute.For<ILight>();
+//            display = Substitute.For<IDisplay>();
+//            cooker = Substitute.For<ICookController>();
 
-        [Test]
-        public void Door_UI_DoorOpen()
-        {
-            door.Open();
+//            ui = new UserInterface(powerButton, timeButton, startCancelButton, door, display, light, cooker);
+//        }
 
-            light.Received(1).TurnOn();
-        }
-        public void Door_UI_DoorClose()
-        {
-            door.Open();
-            door.Close();
+//        [Test]
+//        public void Door_UI_DoorOpen()
+//        {
+//            door.Open();
 
-            light.Received(1).TurnOff();
-        }
+//            light.Received(1).TurnOn();
+//        }
+//        public void Door_UI_DoorClose()
+//        {
+//            door.Open();
+//            door.Close();
 
-        [Test]
-        public void PowerButton_UI_PowerPressed()
-        {
-            powerButton.Press();
+//            light.Received(1).TurnOff();
+//        }
 
-            display.Received(1).ShowPower(50);
-        }
+//        [Test]
+//        public void PowerButton_UI_PowerPressed()
+//        {
+//            powerButton.Press();
 
-        [Test]
-        public void TimeButton_UI_TimePressed()
-        {
-            powerButton.Press();
-            timeButton.Press();
+//            display.Received(1).ShowPower(50);
+//        }
 
-            display.Received(1).ShowTime(1, 0);
-        }
+//        [Test]
+//        public void TimeButton_UI_TimePressed()
+//        {
+//            powerButton.Press();
+//            timeButton.Press();
+
+//            display.Received(1).ShowTime(1, 0);
+//        }
 
 
-    }
-}
+//    }
+//}
