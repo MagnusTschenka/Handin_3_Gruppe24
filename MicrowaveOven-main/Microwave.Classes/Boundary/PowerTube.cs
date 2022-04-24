@@ -6,14 +6,13 @@ namespace Microwave.Classes.Boundary
     public class PowerTube : IPowerTube
     {
         private IOutput myOutput;
-        private int Power = 0;
+        public int Power { get; private set; }
         private bool IsOn = false;
 
         public PowerTube(IOutput output, int power)
         {
             myOutput = output;
-            Power = (power >= 500 || power <= 1000)? power : 500;
-            Power = power;
+            Power = (power >= 500 && power <= 1000)? power : 500;
         }
 
         public void TurnOn()

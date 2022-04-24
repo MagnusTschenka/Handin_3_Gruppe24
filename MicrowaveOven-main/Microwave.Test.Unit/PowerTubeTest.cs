@@ -39,6 +39,16 @@ namespace Microwave.Test.Unit
         //{
         //    Assert.Throws<System.ArgumentOutOfRangeException>(() => uut.TurnOn());
         //}
+        [TestCase(400, 500)]
+        [TestCase(1200, 500)]
+        [TestCase(690, 690)]
+        [Test]
+        public void ctor_PowerTube_Power_Under_Between_Outside_AcceptableRange(int argument, int expected)
+        {
+            PowerTube Temp_uut = new PowerTube(output, argument);
+            Assert.That(Temp_uut.Power, Is.EqualTo(expected));
+        }
+        
 
         [Test]
         public void TurnOff_WasOn_CorrectOutput()
