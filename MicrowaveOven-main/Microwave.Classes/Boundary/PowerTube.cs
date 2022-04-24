@@ -6,27 +6,29 @@ namespace Microwave.Classes.Boundary
     public class PowerTube : IPowerTube
     {
         private IOutput myOutput;
-
+        private int Power = 0;
         private bool IsOn = false;
 
-        public PowerTube(IOutput output)
+        public PowerTube(IOutput output, int power)
         {
             myOutput = output;
+            Power = (power >= 500 || power <= 1000)? power : 500;
+            Power = power;
         }
 
-        public void TurnOn(int power)
+        public void TurnOn()
         {
-            if (power < 1 || 700 < power)
-            {
-                throw new ArgumentOutOfRangeException("power", power, "Must be between 1 and 700 (incl.)");
-            }
+            //if (Power < 500 || 1000 < Power)
+            //{
+            //    throw new ArgumentOutOfRangeException("power", Power, "Must be between 500 and 1000 (incl.)");
+            //}
 
             if (IsOn)
             {
                 throw new ApplicationException("PowerTube.TurnOn: is already on");
             }
 
-            myOutput.OutputLine($"PowerTube works with {power}");
+            myOutput.OutputLine($"PowerTube works with {Power}");
             IsOn = true;
         }
 
