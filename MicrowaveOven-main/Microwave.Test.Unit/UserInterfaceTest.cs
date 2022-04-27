@@ -14,7 +14,7 @@ namespace Microwave.Test.Unit
         private IButton powerButton;
         private IButton timeButton;
         private IButton startCancelButton;
-        private IButton AddTimeButton;
+        private IButton addTimeButton;
 
         private IDoor door;
 
@@ -23,10 +23,14 @@ namespace Microwave.Test.Unit
 
         private ICookController cooker;
 
+        private IButton subtractTimeButton;
+        private IPowerTube powerTube;
+
         [SetUp]
         public void Setup()
         {
-            AddTimeButton = Substitute.For<IButton>();
+            addTimeButton = Substitute.For<IButton>();
+            subtractTimeButton = Substitute.For<IButton>();
             powerButton = Substitute.For<IButton>();
             timeButton = Substitute.For<IButton>();
             startCancelButton = Substitute.For<IButton>();
@@ -35,7 +39,7 @@ namespace Microwave.Test.Unit
             display = Substitute.For<IDisplay>();
             cooker = Substitute.For<ICookController>();
 
-            uut = new UserInterface(AddTimeButton,
+            uut = new UserInterface(subtractTimeButton, addTimeButton,
                 powerButton, timeButton, startCancelButton,
                 door,
                 display,
@@ -348,7 +352,7 @@ namespace Microwave.Test.Unit
             // Now in cooking
 
             //Add time to remaining time
-            AddTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            addTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
 
             cooker.Received().AddTime(5);
             
@@ -366,12 +370,75 @@ namespace Microwave.Test.Unit
             // Now in cooking
 
             //Add time to remaining time
-            AddTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            addTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
 
             display.Received().ShowTime(Arg.Is<int>(6), Arg.Is<int>(0));
             
 
 
+        }
+
+          [Test]
+        public void OnSubractTimePressed()
+        {
+            powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetPower
+            timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetTime
+            startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in cooking
+
+            //Add time to remaining time
+            subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+
+            cooker.Received().SubtractTime(5);
+            
+
+        }
+
+        [Test]
+        public void OnSubtractTimePressed_display()
+        {
+            powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetPower
+            timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetTime
+            startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in cooking
+
+            //Add time (10) to remaining time
+
+            addTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            addTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+
+            subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+
+            display.Received().ShowTime(Arg.Is<int>(6), Arg.Is<int>(0));
+            
+        }
+
+            [Test]
+        public void OnSubtractTimePressed_TimeLessThanZero()
+        {
+            powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetPower
+            timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in SetTime
+            startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            // Now in cooking
+
+            //Starts on 1 minute and subtracts 5 min.         
+
+            subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            cooker.StartCooking(500, 5); //her er isCooking = true
+            powerTube.Received().TurnOff();
+            uut.Received().CookingIsDone();
+            
+
+            // var wasCalled = false;
+            // cooker.Received().OnTimerExpired();
+
+            
         }
 
     }

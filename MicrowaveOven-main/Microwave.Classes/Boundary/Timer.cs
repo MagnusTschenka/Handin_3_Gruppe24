@@ -57,11 +57,20 @@ namespace Microwave.Classes.Boundary
         {
             // One tick has passed
             // Do what I should
-            TimeRemaining += time;
-           
-
-         
+            TimeRemaining += time;         
         }
 
+        
+         public void SubtractTime(int time)
+        {
+            // One tick has passed
+            // Do what I should
+            if((TimeRemaining -= time) <= 0)
+            {
+                Expire();
+            }
+            TimeRemaining -= time;  
+                   
+        }
     }
 }
