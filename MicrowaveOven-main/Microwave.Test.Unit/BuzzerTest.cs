@@ -23,19 +23,11 @@ namespace Microwave.Test.Unit
         [Test]
         public void Buzzer_StartBuzzing_CorrectBuzz()
         {
-            // We don't need an assert, as an exception would fail the test case
-
-            //arrange
-            var expected = "BUZZ, BUZZ, BUZZ\r\n";
-            var stringwriter = new StringWriter();
-            Console.SetOut(stringwriter);
-
-            //act
             uut.StartBuzzing();
-
-            //assert
-            Assert.AreEqual(expected, stringwriter.ToString());
+            SoundOutput.Received(1).OutputLine(Arg.Is<string>(str => str.Contains("BUZZ, BUZZ, BUZZ")));
 
         }
+
     }
+
 }
