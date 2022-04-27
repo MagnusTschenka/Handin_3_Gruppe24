@@ -1,4 +1,6 @@
 ﻿using Microwave.Classes.Boundary;
+using Microwave.Classes.Interfaces;
+using NSubstitute;
 using NUnit.Framework;
 using System.IO;
 using System;
@@ -9,11 +11,13 @@ namespace Microwave.Test.Unit
     public class BuzzerTest
     {
         private Buzzer uut;
+        private IOutput SoundOutput;
 
         [SetUp]
         public void Setup()
         {
-            uut = new Buzzer();
+            SoundOutput = Substitute.For<IOutput>();
+            uut = new Buzzer(SoundOutput);
         }
 
         [Test]

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,9 +9,17 @@ namespace Microwave.Classes.Boundary
 {
     public class Buzzer : IBuzzer
     {
+        private IOutput SoundOutput;
+
+        public Buzzer(IOutput soundOutput)
+        {
+            SoundOutput = soundOutput;
+        }
+
         public void StartBuzzing()
         {
-            Console.WriteLine("BUZZ, BUZZ, BUZZ");
+            SoundOutput.OutputLine("BUZZ, BUZZ, BUZZ");
+            //Console.WriteLine("BUZZ, BUZZ, BUZZ");
         }
     }
 }
