@@ -431,27 +431,11 @@ namespace Microwave.Test.Unit
             startCancelButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
             // Now in cooking
 
+            subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+
             //Starts on 1 minute and subtracts 5 min.         
 
-            subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            //powerTube.Received().TurnOff();
-            display.Received().Clear();
-            
-
-            // var wasCalled = false;
-            // cooker.Received().OnTimerExpired();
+            cooker.Received().SubtractTime(5);
 
             
         }

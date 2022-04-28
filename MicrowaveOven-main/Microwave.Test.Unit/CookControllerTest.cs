@@ -96,18 +96,17 @@ namespace Microwave.Test.Unit
         }
 
         [Test]
-        public void AddTime()
+        public void AddTime_CookControlCalls_TimerAddTime()
         {
             uut.AddTime(5);
             timer.Received().AddTime(5);
         }
 
         [Test]
-        public void SubtractTime_lessThanZero()
+        public void SubtractTime_CookControlCalls_TimerSubractTime()
         {
-            uut.StartCooking(700, 9);
-            //subtractTimeButton.Pressed;
-            //raise event expired
+            uut.SubtractTime(5);
+            timer.Received().SubtractTime(5);
 
 
 

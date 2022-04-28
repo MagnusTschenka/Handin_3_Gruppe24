@@ -65,12 +65,12 @@ namespace Microwave.Classes.Boundary
         {
             // One tick has passed
             // Do what I should
-            if((TimeRemaining -= time) <= 0)
+            if (TimeRemaining - time <= 0)
             {
                 Expire();
             }
-            TimeRemaining -= time;  
-                   
+            TimeRemaining -= time;
+
         }
     }
 }
