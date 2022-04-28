@@ -73,6 +73,13 @@ namespace Microwave.Classes.Controllers
 
         public void AddTime(int time)
         {
-            myTimer.AddTime(time);        }
+            myTimer.AddTime(time);        
+        }
+
+
+        public void SubtractTime(int time)
+        {
+            myTimer.SubtractTime(time);        
+        }
     }
 }

@@ -10,6 +10,7 @@ namespace Microwave.Classes.Interfaces
     {
         void StartCooking(int power, int time);
         void AddTime(int time);
+        void SubtractTime(int time);
         void Stop();
     }
 }

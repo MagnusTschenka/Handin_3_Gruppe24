@@ -1,4 +1,5 @@
 ﻿using System.Threading;
+using NSubstitute;
 using NUnit.Framework;
 using Timer = Microwave.Classes.Boundary.Timer;
 
@@ -155,5 +156,25 @@ namespace Microwave.Test.Unit
             Assert.That(uut.TimeRemaining, Is.EqualTo(5));
 
         }
+
+        [Test]
+        public void SubtractTime_FromTimeGreaterThan_5()
+        {
+            uut.AddTime(6);
+            
+            uut.SubtractTime(5);
+            Assert.That(uut.TimeRemaining, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void SubtractTime_FromTimeLessThan_5()
+        {
+            uut.AddTime(4);
+            bool wasCalled = false;
+            uut.Expired += (o, e) => wasCalled = true;
+            uut.SubtractTime(5);
+            Assert.That(wasCalled, Is.EqualTo(true));
+        }
+
     }
 }

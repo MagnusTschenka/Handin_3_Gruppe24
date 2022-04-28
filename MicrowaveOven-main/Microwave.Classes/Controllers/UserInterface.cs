@@ -22,7 +22,8 @@ namespace Microwave.Classes.Controllers
         private int time = 1;
 
         public UserInterface(
-            IButton AddTimeButton,
+            IButton addTimeButton,
+            IButton subtractTimeButton,
             IButton powerButton,
             IButton timeButton,
             IButton startCancelButton,
@@ -33,7 +34,8 @@ namespace Microwave.Classes.Controllers
             IBuzzer buzzer)
         {
 
-            AddTimeButton.Pressed += new EventHandler(OnAddTimePressed);
+            addTimeButton.Pressed += new EventHandler(OnAddTimePressed);
+            subtractTimeButton.Pressed += new EventHandler(onSubtractTimePressed);
             powerButton.Pressed += new EventHandler(OnPowerPressed);
             timeButton.Pressed += new EventHandler(OnTimePressed);
             startCancelButton.Pressed += new EventHandler(OnStartCancelPressed);
@@ -76,6 +78,18 @@ namespace Microwave.Classes.Controllers
                 case States.COOKING:
                     time += 5;
                     myCooker.AddTime(5);
+                    myDisplay.ShowTime(time, 0);
+                    break;
+            }
+        }
+
+  public void onSubtractTimePressed(object sender, EventArgs e)
+        {
+            switch (myState)
+            {
+                case States.COOKING:
+                    time -= 5;
+                    myCooker.SubtractTime(5);
                     myDisplay.ShowTime(time, 0);
                     break;
             }
