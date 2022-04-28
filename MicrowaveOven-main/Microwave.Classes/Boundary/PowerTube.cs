@@ -6,7 +6,7 @@ namespace Microwave.Classes.Boundary
     public class PowerTube : IPowerTube
     {
         private IOutput myOutput;
-        public int Power { get; private set; }
+        private int Power;
         private bool IsOn = false;
 
         public PowerTube(IOutput output, int power)
@@ -39,6 +39,11 @@ namespace Microwave.Classes.Boundary
             }
 
             IsOn = false;
+        }
+
+        public int getPower()
+        {
+            return Power;
         }
     }
 }
