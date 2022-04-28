@@ -39,7 +39,7 @@ namespace Microwave.Test.Unit
             display = Substitute.For<IDisplay>();
             cooker = Substitute.For<ICookController>();
 
-            uut = new UserInterface(subtractTimeButton, addTimeButton,
+            uut = new UserInterface(addTimeButton, subtractTimeButton,
                 powerButton, timeButton, startCancelButton,
                 door,
                 display,
@@ -420,6 +420,7 @@ namespace Microwave.Test.Unit
             [Test]
         public void OnSubtractTimePressed_TimeLessThanZero()
         {
+
             powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
             // Now in SetPower
             timeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
@@ -430,9 +431,20 @@ namespace Microwave.Test.Unit
             //Starts on 1 minute and subtracts 5 min.         
 
             subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-            cooker.StartCooking(500, 5); //her er isCooking = true
-            powerTube.Received().TurnOff();
-            uut.Received().CookingIsDone();
+            subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
+            //powerTube.Received().TurnOff();
+            display.Received().Clear();
             
 
             // var wasCalled = false;
