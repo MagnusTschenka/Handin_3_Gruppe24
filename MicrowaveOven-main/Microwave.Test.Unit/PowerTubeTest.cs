@@ -46,7 +46,7 @@ namespace Microwave.Test.Unit
         public void ctor_PowerTube_Power_Under_Between_Outside_AcceptableRange(int argument, int expected)
         {
             PowerTube Temp_uut = new PowerTube(output, argument);
-            Assert.That(Temp_uut.Power, Is.EqualTo(expected));
+            Assert.That(Temp_uut.getPower(), Is.EqualTo(expected));
         }
         
 

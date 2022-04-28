@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using Microwave.Classes.Boundary;
 using Microwave.Classes.Controllers;
 
@@ -12,8 +13,6 @@ namespace Microwave.App
             Button powerButton = new Button();
             Button timeButton = new Button();
         
-
-
             Door door = new Door();
 
             Output output = new Output();
@@ -21,18 +20,25 @@ namespace Microwave.App
             Buzzer buzzer = new Buzzer(output);
 
             Display display = new Display(output);
+            Console.WriteLine("Input max power for the powertube. Valid range is 500-1200");
+            int power = Convert.ToInt16(Console.ReadLine());
+            if (power <= 500 && power > 1200)
+            {
+                Console.WriteLine("Invalid input, power is set to max 50W");
+                power = 50;
+            }
 
-            PowerTube powerTube = new PowerTube(output, int.Parse(args[0]));
+            PowerTube powerTube = new PowerTube(output, power);
 
             Light light = new Light(output);
 
-            Microwave.Classes.Boundary.Timer timer = new Timer();
+            Microwave.Classes.Boundary.Timer timer = new Microwave.Classes.Boundary.Timer();
             AddTimeButton addTimeButton = new AddTimeButton(timer);
             SubtractTimeButton subtractTimeButton = new SubtractTimeButton(timer);
 
             CookController cooker = new CookController(timer, display, powerTube); //, buzzer
 
-            UserInterface ui = new UserInterface(addTimeButton,subtractTimeButton, powerButton, timeButton, startCancelButton, door, display, light, cooker, buzzer);
+            UserInterface ui = new UserInterface(addTimeButton,subtractTimeButton, powerButton, timeButton, startCancelButton, door, display, light, cooker, buzzer, powerTube);
 
             // Finish the double association
             cooker.UI = ui;
@@ -44,6 +50,14 @@ namespace Microwave.App
             timeButton.Press();
 
             startCancelButton.Press();
+            Thread.Sleep(3000);
+            addTimeButton.Press();
+            Thread.Sleep(3000);
+            for (int i = 0; i < 12; i++)
+            {
+            subtractTimeButton.Press(); 
+
+            }
 
             // The simple sequence should now run
 

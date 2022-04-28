@@ -17,10 +17,10 @@ namespace Microwave.Classes.Controllers
         private ILight myLight;
         private IDisplay myDisplay;
         private IBuzzer myBuzzer;
+        private IPowerTube myPowerTube;
 
         private int powerLevel = 50;
         private int time = 1;
-
         public UserInterface(
             IButton addTimeButton,
             IButton subtractTimeButton,
@@ -31,7 +31,9 @@ namespace Microwave.Classes.Controllers
             IDisplay display,
             ILight light,
             ICookController cooker,
-            IBuzzer buzzer)
+            IBuzzer buzzer,
+            IPowerTube powerTube
+            )
         {
 
             addTimeButton.Pressed += new EventHandler(OnAddTimePressed);
@@ -47,6 +49,7 @@ namespace Microwave.Classes.Controllers
             myLight = light;
             myDisplay = display;
             myBuzzer = buzzer;
+            myPowerTube = powerTube;
         }
 
         private void ResetValues()
@@ -64,7 +67,7 @@ namespace Microwave.Classes.Controllers
                     myState = States.SETPOWER;
                     break;
                 case States.SETPOWER:
-                    powerLevel = (powerLevel >= 700 ? 50 : powerLevel+50);
+                    powerLevel = (powerLevel >= myPowerTube.getPower() ? 50 : powerLevel+50);
                     myDisplay.ShowPower(powerLevel);
                     break;
             }
@@ -76,9 +79,9 @@ namespace Microwave.Classes.Controllers
             switch (myState)
             {
                 case States.COOKING:
-                    time += 5;
+                    //timeInSeconds += 5;
                     myCooker.AddTime(5);
-                    myDisplay.ShowTime(time, 0);
+                   // myDisplay.ShowTime(time, 0);
                     break;
             }
         }
@@ -88,9 +91,9 @@ namespace Microwave.Classes.Controllers
             switch (myState)
             {
                 case States.COOKING:
-                    time -= 5;
+                    //timeInSeconds -= 5;
                     myCooker.SubtractTime(5);
-                    myDisplay.ShowTime(time, 0);
+                   // myDisplay.ShowTime(time, timeInSeconds);
                     break;
             }
         }
