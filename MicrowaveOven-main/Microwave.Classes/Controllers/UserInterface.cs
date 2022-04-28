@@ -21,7 +21,6 @@ namespace Microwave.Classes.Controllers
 
         private int powerLevel = 50;
         private int time = 1;
-        private int timeInSeconds = 0;
         public UserInterface(
             IButton addTimeButton,
             IButton subtractTimeButton,

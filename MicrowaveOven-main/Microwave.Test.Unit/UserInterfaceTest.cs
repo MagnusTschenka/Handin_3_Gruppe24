@@ -40,6 +40,7 @@ namespace Microwave.Test.Unit
             display = Substitute.For<IDisplay>();
             cooker = Substitute.For<ICookController>();
             buzzer = Substitute.For<IBuzzer>();
+            powerTube = Substitute.For<IPowerTube>();
 
             uut = new UserInterface(addTimeButton, subtractTimeButton,
                 powerButton, timeButton, startCancelButton,
@@ -47,7 +48,8 @@ namespace Microwave.Test.Unit
                 display,
                 light,
                 cooker,
-                buzzer);
+                buzzer,
+                powerTube);
         }
 
         [Test]
@@ -374,7 +376,7 @@ namespace Microwave.Test.Unit
 
             //Add time to remaining time
             addTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
-
+            //FIXXXXXXXXXXXXXXXXXXXXXXX
             display.Received().ShowTime(Arg.Is<int>(6), Arg.Is<int>(0));
             
 
@@ -416,7 +418,7 @@ namespace Microwave.Test.Unit
 
             subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
 
-            display.Received().ShowTime(Arg.Is<int>(6), Arg.Is<int>(0));
+            display.Received().ShowTime(Arg.Is<int>(1), Arg.Is<int>(6));
             
         }
 
@@ -433,7 +435,7 @@ namespace Microwave.Test.Unit
 
             subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
 
-            //Starts on 1 minute and subtracts 5 min.         
+            //Starts on 1 minute and subtracts 5 sec.         
 
             cooker.Received().SubtractTime(5);
 
