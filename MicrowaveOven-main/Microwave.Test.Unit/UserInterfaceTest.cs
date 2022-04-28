@@ -86,6 +86,7 @@ namespace Microwave.Test.Unit
         [Test]
         public void Ready_2PowerButton_PowerIs100()
         {
+            powerTube.getPower().Returns(700);
             powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
             powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
             display.Received(1).ShowPower(Arg.Is<int>(100));
@@ -94,6 +95,7 @@ namespace Microwave.Test.Unit
         [Test]
         public void Ready_14PowerButton_PowerIs700()
         {
+            powerTube.getPower().Returns(700);
             for (int i = 1; i <= 14; i++)
             {
                 powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
@@ -104,6 +106,7 @@ namespace Microwave.Test.Unit
         [Test]
         public void Ready_15PowerButton_PowerIs50Again()
         {
+            powerTube.getPower().Returns(700);
             for (int i = 1; i <= 15; i++)
             {
                 powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
@@ -207,6 +210,7 @@ namespace Microwave.Test.Unit
         [Test]
         public void Ready_PowerAndTime_CookerIsCalledCorrectly()
         {
+            powerTube.getPower().Returns(700);
             powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
             // Now in SetPower
             powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
@@ -224,6 +228,7 @@ namespace Microwave.Test.Unit
         [Test]
         public void Ready_FullPower_CookerIsCalledCorrectly()
         {
+            powerTube.getPower().Returns(700);
             for (int i = 50; i <= 700; i += 50)
             {
                 powerButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
@@ -377,7 +382,7 @@ namespace Microwave.Test.Unit
             //Add time to remaining time
             addTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
             //FIXXXXXXXXXXXXXXXXXXXXXXX
-            display.Received().ShowTime(Arg.Is<int>(6), Arg.Is<int>(0));
+            display.Received().ShowTime(Arg.Is<int>(1), Arg.Is<int>(0));
             
 
 
@@ -418,7 +423,7 @@ namespace Microwave.Test.Unit
 
             subtractTimeButton.Pressed += Raise.EventWith(this, EventArgs.Empty);
 
-            display.Received().ShowTime(Arg.Is<int>(1), Arg.Is<int>(6));
+            display.Received().ShowTime(Arg.Is<int>(1), Arg.Is<int>(0));
             
         }
 

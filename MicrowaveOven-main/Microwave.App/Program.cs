@@ -20,8 +20,15 @@ namespace Microwave.App
             Buzzer buzzer = new Buzzer(output);
 
             Display display = new Display(output);
+            Console.WriteLine("Input max power for the powertube. Valid range is 500-1200");
+            int power = Convert.ToInt16(Console.ReadLine());
+            if (power <= 500 && power > 1200)
+            {
+                Console.WriteLine("Invalid input, power is set to max 50W");
+                power = 50;
+            }
 
-            PowerTube powerTube = new PowerTube(output, 500);
+            PowerTube powerTube = new PowerTube(output, power);
 
             Light light = new Light(output);
 
